@@ -1,0 +1,1 @@
+This Project is a WIP and is fully working currently, Before installing you will need to install ffmpeg on your system as I could not figure out how to install it contained within Jellyfin and allow it to work.
