@@ -1,0 +1,54 @@
+{
+  "name": "Jellyfin",
+  "display": "Jellyfin Media Server",
+  "type": "MediaServer",
+  "install": [
+    {
+      "commands": [
+        "wget -O jellyfin.tar.gz https://repo.jellyfin.org/files/server/linux/latest-stable/${arch}/jellyfin_${version}-${arch}.tar.gz",
+        "tar -xzf jellyfin.tar.gz",
+        "mv jellyfin_${version} jellyfin",
+        "rm jellyfin.tar.gz",
+        "mkdir -p data/config data/cache data/log data/media"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stop": "exit",
+    "command": "./jellyfin/jellyfin --datadir data/config --cachedir data/cache --logdir data/log --ffmpeg /usr/lib/jellyfin-ffmpeg/ffmpeg --port ${port} --nowebclient",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "version": {
+      "type": "string",
+      "desc": "The version of Jellyfin to install (e.g. 10.11.11)",
+      "display": "Jellyfin Version",
+      "value": "10.11.11"
+    },
+    "arch": {
+      "type": "string",
+      "desc": "Server CPU architecture: amd64, arm64, or armhf",
+      "display": "Architecture",
+      "value": "amd64"
+    },
+    "port": {
+      "type": "integer",
+      "desc": "The HTTP port Jellyfin will listen on",
+      "display": "HTTP Port",
+      "value": "8096"
+    }
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    }
+  ],
+  "requirements": {}
+}
