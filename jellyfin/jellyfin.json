@@ -7,7 +7,6 @@
       "commands": [
         "wget -O jellyfin.tar.gz https://repo.jellyfin.org/files/server/linux/latest-stable/${arch}/jellyfin_${version}-${arch}.tar.gz",
         "tar -xzf jellyfin.tar.gz",
-        "mv jellyfin_${version} jellyfin",
         "rm jellyfin.tar.gz",
         "mkdir -p data/config data/cache data/log data/media"
       ],
@@ -16,7 +15,7 @@
   ],
   "run": {
     "stop": "exit",
-    "command": "./jellyfin/jellyfin --datadir data/config --cachedir data/cache --logdir data/log --ffmpeg /usr/lib/jellyfin-ffmpeg/ffmpeg --port ${port} --nowebclient",
+    "command": "./jellyfin/jellyfin --datadir data/config --cachedir data/cache --logdir data/log",
     "workingDirectory": "",
     "pre": [],
     "post": [],
@@ -43,11 +42,11 @@
     }
   },
   "environment": {
-    "type": "standard"
+    "type": "host"
   },
   "supportedEnvironments": [
     {
-      "type": "standard"
+      "type": "host"
     }
   ],
   "requirements": {}
